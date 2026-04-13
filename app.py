@@ -4,10 +4,12 @@ import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = "sua_chave_secreta_aqui"  # altere para algo seguro em produção
+with app.app_context():
+    criar_banco()
+app.secret_key = os.environ.get("SECRET_KEY", "dev")  # altere para algo seguro em produção
 
-UPLOAD_IMAGENS = 'static/imagens'
-UPLOAD_ARQUIVOS = 'static/uploads'
+UPLOAD_IMAGENS = 'uploads/imagens'
+UPLOAD_ARQUIVOS = 'uploads/uploads'
 os.makedirs(UPLOAD_IMAGENS, exist_ok=True)
 os.makedirs(UPLOAD_ARQUIVOS, exist_ok=True)
 
