@@ -61,6 +61,19 @@ def criar_banco():
 with app.app_context():
     criar_banco()
 
+    conn = conectar()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM usuarios WHERE usuario='admin'")
+    if not cursor.fetchone():
+        cursor.execute(
+            "INSERT INTO usuarios (usuario, senha) VALUES (?, ?)",
+            ("admin", "admin")
+        )
+        conn.commit()
+
+    conn.close()
+
 # ========================
 # LOGIN
 # ========================
