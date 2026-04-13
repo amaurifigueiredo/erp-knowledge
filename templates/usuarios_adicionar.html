@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Adicionar Usuário</h2>
+<form method="POST">
+    <input name="usuario" class="form-control mb-2" placeholder="Usuário" required>
+    <input name="senha" type="password" class="form-control mb-2" placeholder="Senha" required>
+    <button class="btn btn-success">Cadastrar</button>
+</form>
+{% endblock %}

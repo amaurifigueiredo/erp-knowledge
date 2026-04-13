@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Adicionar Conhecimento</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input name="titulo" class="form-control mb-2" placeholder="Título" required>
+    <textarea name="descricao" class="form-control mb-2" placeholder="Descrição" rows="5" required></textarea>
+    <input name="categoria" class="form-control mb-2" placeholder="Categoria">
+    <input name="tags" class="form-control mb-2" placeholder="Tags (separadas por vírgula)">
+    
+    <label>Sistema:</label>
+    <select name="sistema" class="form-control mb-2" required>
+        <option value="">Selecione o sistema</option>
+        <option value="Byte Factory">Byte Factory</option>
+        <option value="Byte Empresa">Byte Empresa</option>
+    </select>
+
+    <label>Imagem:</label>
+    <input type="file" name="imagem" class="form-control mb-2">
+    
+    <label>Arquivo:</label>
+    <input type="file" name="arquivo" class="form-control mb-2">
+    
+    <button class="btn btn-success">Adicionar</button>
+</form>
+{% endblock %}

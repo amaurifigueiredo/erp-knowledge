@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Base de Conhecimento</h2>
+
+<form method="GET" class="row mb-3">
+    <div class="col-md-5">
+        <input type="text" name="busca" value="{{ busca }}" class="form-control" placeholder="Pesquisar">
+    </div>
+    <div class="col-md-3">
+        <select name="sistema" class="form-control">
+            <option value="">Todos os sistemas</option>
+            <option value="Byte Factory" {% if sistema_filtro=='Byte Factory' %}selected{% endif %}>Byte Factory</option>
+            <option value="Byte Empresa" {% if sistema_filtro=='Byte Empresa' %}selected{% endif %}>Byte Empresa</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-success">Filtrar</button>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Sistema</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dado in dados %}
+        <tr>
+            <td>{{ dado[1] }}</td>
+            <td>{{ dado[6] }}</td>
+            <td>{{ dado[3] }}</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="{{ url_for('detalhe', id=dado[0]) }}">Ver</a>
+                <a class="btn btn-sm btn-warning" href="{{ url_for('editar', id=dado[0]) }}">Editar</a>
+                <a class="btn btn-sm btn-danger" href="{{ url_for('excluir', id=dado[0]) }}" onclick="return confirm('Deseja realmente excluir?')">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

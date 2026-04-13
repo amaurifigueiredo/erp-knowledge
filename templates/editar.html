@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar Conhecimento</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input name="titulo" class="form-control mb-2" value="{{ dado[1] }}" required>
+    <textarea name="descricao" class="form-control mb-2" rows="5" required>{{ dado[2] }}</textarea>
+    <input name="categoria" class="form-control mb-2" value="{{ dado[3] }}">
+    <input name="tags" class="form-control mb-2" value="{{ dado[4] }}">
+    
+    <label>Sistema:</label>
+    <select name="sistema" class="form-control mb-2" required>
+        <option value="">Selecione o sistema</option>
+        <option value="Byte Factory" {% if dado[6]=='Byte Factory' %}selected{% endif %}>Byte Factory</option>
+        <option value="Byte Empresa" {% if dado[6]=='Byte Empresa' %}selected{% endif %}>Byte Empresa</option>
+    </select>
+
+    <label>Imagem atual:</label>
+    {% if dado[5] %}
+        <img src="{{ url_for('static', filename='imagens/'+dado[5]) }}" width="150"><br>
+    {% endif %}
+    <label>Nova imagem:</label>
+    <input type="file" name="imagem" class="form-control mb-2">
+
+    <label>Arquivo atual:</label>
+    {% if dado[7] %}
+        <a href="{{ url_for('static', filename='uploads/'+dado[7]) }}">{{ dado[7] }}</a><br>
+    {% endif %}
+    <label>Novo arquivo:</label>
+    <input type="file" name="arquivo" class="form-control mb-2">
+
+    <button class="btn btn-warning">Salvar</button>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ dado[1] }}</h2>
+<p><strong>Categoria:</strong> {{ dado[3] }}</p>
+<p><strong>Tags:</strong> {{ dado[4] }}</p>
+<p><strong>Sistema:</strong> {{ dado[6] }}</p>
+<p><strong>Descrição:</strong><br>{{ dado[2] }}</p>
+
+{% if dado[5] %}
+    <p><strong>Imagem:</strong><br><img src="{{ url_for('static', filename='imagens/'+dado[5]) }}" width="300"></p>
+{% endif %}
+
+{% if dado[7] %}
+    <p><strong>Arquivo:</strong> <a href="{{ url_for('static', filename='uploads/'+dado[7]) }}">{{ dado[7] }}</a></p>
+{% endif %}
+
+<a class="btn btn-primary" href="{{ url_for('editar', id=dado[0]) }}">Editar</a>
+<a class="btn btn-danger" href="{{ url_for('excluir', id=dado[0]) }}" onclick="return confirm('Deseja realmente excluir?')">Excluir</a>
+<a class="btn btn-secondary" href="{{ url_for('index') }}">Voltar</a>
+{% endblock %}
